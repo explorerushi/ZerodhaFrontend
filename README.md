@@ -5,7 +5,7 @@ A full-stack clone of Zerodha’s trading platform built with **MERN Stack** (Mo
 ---
 
 ## 🚀 Live Demo
-**Frontend:** [Zerodha-vercel-app](https://zerodha-frontend-3y57.vercel.app/)
+**Deployed Link:** [Zerodha-vercel-app](https://zerodha-frontend-3y57.vercel.app/)
 
 ---
 
