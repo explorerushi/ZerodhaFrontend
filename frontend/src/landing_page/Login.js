@@ -15,7 +15,14 @@ function Login() {
             <label htmlFor="password" className="form-label">Password</label>
             <input type="password" className="form-control" id="password" placeholder="Password" />
           </div>
-          <button type="submit" className="btn btn-primary w-100">Login</button>
+          <button
+  type="button"
+  className="btn btn-primary w-100"
+  onClick={() => window.location.href = "https://zerodha-dashboard-gamma-three.vercel.app/"}
+>
+  Login
+</button>
+
         </form>
       </div>
     </div>
@@ -23,3 +30,4 @@ function Login() {
 }
 
 export default Login;
+
