@@ -1,7 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom"; 
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Signup() {
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
     <div className="container-fluid bg-light min-vh-100 d-flex flex-column align-items-center pt-5">
       <img
@@ -29,18 +31,32 @@ function Signup() {
             <input type="email" className="form-control" id="email" placeholder="Email address" />
           </div>
 
-          <div className="mb-4">
-            <label htmlFor="pan" className="form-label">PAN Number</label>
-            <input type="text" className="form-control" id="pan" placeholder="PAN number" />
+          {/* Password field with Show/Hide toggle */}
+          <div className="mb-4 position-relative">
+            <label htmlFor="password" className="form-label">Password</label>
+            <input
+              type={showPassword ? "text" : "password"}
+              className="form-control"
+              id="password"
+              placeholder="Enter password"
+            />
+            <button
+              type="button"
+              className="btn btn-sm btn-outline-secondary position-absolute"
+              style={{ right: "10px", top: "36px" }}
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? "Hide" : "Show"}
+            </button>
           </div>
 
-         <Link to="/login" className="btn btn-primary w-100">
-  Continue</Link>
-
+          <Link to="/login" className="btn btn-primary w-100">
+            Continue
+          </Link>
         </form>
 
         <p className="text-center mt-3 text-muted">
-          Already have an account? <Link to="/login">Login</Link> {/* 👈 Works now */}
+          Already have an account? <Link to="/login">Login</Link>
         </p>
       </div>
     </div>
