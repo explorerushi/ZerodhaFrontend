@@ -10,7 +10,7 @@ function Login() {
         <h3 className="text-center mb-4">Login</h3>
         <form>
           <div className="mb-3">
-            <label htmlFor="userid" className="form-label">User ID</label>
+            <label htmlFor="userid" className="form-label">Email Id</label>
             <input type="text" className="form-control" id="userid" placeholder="User ID" />
           </div>
 
@@ -47,3 +47,4 @@ function Login() {
 }
 
 export default Login;
+
