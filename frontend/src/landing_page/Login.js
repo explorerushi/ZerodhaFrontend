@@ -11,7 +11,7 @@ function Login() {
         <form>
           <div className="mb-3">
             <label htmlFor="userid" className="form-label">Email Id</label>
-            <input type="text" className="form-control" id="userid" placeholder="User ID" />
+            <input type="text" className="form-control" id="Email" placeholder="User ID" />
           </div>
 
           {/* Password with Show/Hide */}
@@ -47,4 +47,5 @@ function Login() {
 }
 
 export default Login;
+
 
