@@ -1,105 +1,68 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { auth } from "../../firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { getFirestore, doc, setDoc } from "firebase/firestore";
-import "./Signup.css";
+.signup-container {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  background: #fff;
+  border-radius: 8px;
+  font-family: Arial, sans-serif;
+}
 
-const db = getFirestore();
+.signup-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
 
-export default function Signup() {
-  const [mobile, setMobile] = useState("");
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+.signup-container input {
+  display: block;
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
 
-  const handleSignup = async (e) => {
-    e.preventDefault();
+.password-wrapper {
+  position: relative;
+}
 
-    if (!mobile || !fullName || !email || !password) {
-      alert("Please fill in all fields");
-      return;
-    }
+.show-btn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  padding: 6px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid #007bff;
+  color: #007bff;
+  border-radius: 4px;
+}
 
-    try {
-      setLoading(true);
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
+.show-btn:hover {
+  background: #007bff;
+  color: #fff;
+}
 
-      await setDoc(doc(db, "users", user.uid), {
-        mobile,
-        fullName,
-        email,
-      });
+.signup-container button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
 
-      console.log("Signup successful, redirecting...");
-      navigate("/login"); // redirect after signup
-    } catch (error) {
-      alert(error.message);
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
+.signup-container button[disabled] {
+  background-color: #a0a0a0;
+  cursor: not-allowed;
+}
 
-  return (
-    <div className="signup-container">
-      <Link className="navbar-brand" to="/">
-        <img
-          src="media/images/logo.svg"
-          alt="Logo"
-          style={{ width: "50%", marginLeft: "90px", marginBottom: "20px" }}
-        />
-      </Link>
-      <h2>Sign up now</h2>
-      <form onSubmit={handleSignup}>
-        <input
-          type="tel"
-          placeholder="Phone"
-          value={mobile}
-          onChange={(e) => setMobile(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Name"
-          value={fullName}
-          onChange={(e) => setFullName(e.target.value)}
-          required
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <div className="password-wrapper">
-          <input
-            type={showPassword ? "text" : "password"}
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <button
-            type="button"
-            className="show-btn"
-            onClick={() => setShowPassword(!showPassword)}
-          >
-            {showPassword ? "Hide" : "Show"}
-          </button>
-        </div>
-        <button type="submit" disabled={loading}>
-          {loading ? "Please wait..." : "Continue"}
-        </button>
-      </form>
-      <p>
-        Already have an account? <Link to="/login">Login</Link>
-      </p>
-    </div>
-  );
+.signup-container p {
+  margin-top: 15px;
+  text-align: center;
+  color: #555;
 }
