@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase"; // adjust path if needed
-import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -20,8 +18,7 @@ function Login() {
     try {
       setLoading(true);
       await signInWithEmailAndPassword(auth, email, password);
-      // Redirect on success
-      navigate("/dashboard"); // or wherever you want
+      window.location.href = "https://zerodha-dashboard-gamma-three.vercel.app/";
     } catch (error) {
       alert(error.message);
     } finally {
