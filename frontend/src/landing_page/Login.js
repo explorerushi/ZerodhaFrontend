@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Login() {
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
     <div className="container-fluid min-vh-100 d-flex justify-content-center align-items-center bg-light">
       <div className="card p-4 shadow" style={{ maxWidth: "400px", width: "100%" }}>
@@ -11,18 +13,33 @@ function Login() {
             <label htmlFor="userid" className="form-label">User ID</label>
             <input type="text" className="form-control" id="userid" placeholder="User ID" />
           </div>
-          <div className="mb-4">
-            <label htmlFor="password" className="form-label">Password</label>
-            <input type="password" className="form-control" id="password" placeholder="Password" />
-          </div>
-          <button
-  type="button"
-  className="btn btn-primary w-100"
-  onClick={() => window.location.href = "https://zerodha-dashboard-gamma-three.vercel.app/"}
->
-  Login
-</button>
 
+          {/* Password with Show/Hide */}
+          <div className="mb-4 position-relative">
+            <label htmlFor="password" className="form-label">Password</label>
+            <input
+              type={showPassword ? "text" : "password"}
+              className="form-control"
+              id="password"
+              placeholder="Password"
+            />
+            <button
+              type="button"
+              className="btn btn-sm btn-outline-secondary position-absolute"
+              style={{ right: "10px", top: "36px" }}
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? "Hide" : "Show"}
+            </button>
+          </div>
+
+          <button
+            type="button"
+            className="btn btn-primary w-100"
+            onClick={() => window.location.href = "https://zerodha-dashboard-gamma-three.vercel.app/"}
+          >
+            Login
+          </button>
         </form>
       </div>
     </div>
@@ -30,4 +47,3 @@ function Login() {
 }
 
 export default Login;
-
